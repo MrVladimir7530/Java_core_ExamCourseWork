@@ -13,8 +13,8 @@ public class ExamController {
         this.examinerService = examinerService;
     }
 
-    @GetMapping
+    @GetMapping("/exam/java/random")
     public String getQuestions(@RequestParam("amount") int amount) {
-        return "" + examinerService.getQuestions(amount);
+        return "list questions: " + examinerService.getQuestions(amount);
     }
 }

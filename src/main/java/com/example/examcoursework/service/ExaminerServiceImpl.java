@@ -24,7 +24,7 @@ public class ExaminerServiceImpl implements ExaminerService{
         }
         List<Question> questionList = new ArrayList<>();
         int number = 0;
-        while (number <= amount) {
+        while (number < amount) {
             Question newQuestion = questionService.getRandomQuestion();
             if(!questionList.contains(newQuestion)){
                 questionList.add(newQuestion);

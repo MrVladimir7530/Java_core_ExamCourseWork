@@ -42,9 +42,9 @@ public class Question {
 
     @Override
     public String toString() {
-        return "Question{" +
+        return "<p>Question{" +
                 "question='" + question + '\'' +
                 ", answer='" + answer + '\'' +
-                '}';
+                "}</p>";
     }
 }

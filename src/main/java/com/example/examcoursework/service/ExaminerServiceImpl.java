@@ -1,5 +1,6 @@
 package com.example.examcoursework.service;
 
+import com.example.examcoursework.exceptions.FewQuestionsException;
 import com.example.examcoursework.storage.Question;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +11,6 @@ import java.util.Random;
 
 @Service
 public class ExaminerServiceImpl implements ExaminerService{
-
     QuestionService questionService;
 
     public ExaminerServiceImpl(QuestionService questionService) {
@@ -20,7 +20,7 @@ public class ExaminerServiceImpl implements ExaminerService{
     @Override
     public Collection<Question> getQuestions(int amount) {
         if (questionService.getAll().size() < amount)  {
-            throw new RuntimeException();
+            throw new FewQuestionsException();
         }
         List<Question> questionList = new ArrayList<>();
         int number = 0;

@@ -1,5 +1,6 @@
 package com.example.examcoursework.service;
 
+import com.example.examcoursework.repository.JavaQuestionRepository;
 import com.example.examcoursework.storage.Question;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,7 +17,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 public class JavaQuestionServiceTest {
-    private final QuestionService questionService = new JavaQuestionService();
+    private final JavaQuestionRepository javaQuestionRepository = new JavaQuestionRepository();
+    private final QuestionService questionService = new JavaQuestionService(javaQuestionRepository);
 
     @ParameterizedTest
     @CsvSource({"question1, answer1", "question2, answer2", "question3, answer3"})

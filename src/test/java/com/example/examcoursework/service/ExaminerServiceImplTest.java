@@ -1,5 +1,6 @@
 package com.example.examcoursework.service;
 
+import com.example.examcoursework.repository.JavaQuestionRepository;
 import com.example.examcoursework.storage.Question;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,7 +11,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 public class ExaminerServiceImplTest {
-    private final QuestionService questionService = new JavaQuestionService();
+    private final JavaQuestionRepository javaQuestionRepository = new JavaQuestionRepository();
+    private final QuestionService questionService = new JavaQuestionService(javaQuestionRepository);
     private final ExaminerService examinerService = new ExaminerServiceImpl(questionService);
 
     @Test

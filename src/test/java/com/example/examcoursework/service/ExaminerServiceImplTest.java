@@ -1,27 +1,25 @@
 package com.example.examcoursework.service;
 
-import com.example.examcoursework.repository.JavaQuestionRepository;
 import com.example.examcoursework.storage.Question;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.mockito.Mockito;
+
 
 import java.util.Collection;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest
 public class ExaminerServiceImplTest {
-    private final JavaQuestionRepository javaQuestionRepository = new JavaQuestionRepository();
-    private final QuestionService questionService = new JavaQuestionService(javaQuestionRepository);
-    private final ExaminerService examinerService = new ExaminerServiceImpl(questionService);
+    private final QuestionService questionService = Mockito.mock(QuestionService.class);
+    private final List<QuestionService> questionServiceList = List.of(questionService);
+    private final ExaminerService examinerService = new ExaminerServiceImpl(questionServiceList);
 
     @Test
     public void shouldReturnTrueWhenGetRandomCollectionQuestions() {
-        questionService.add("question1", "answer1");
-        questionService.add("question2", "answer2");
-        questionService.add("question3", "answer3");
-        questionService.add("question4", "answer4");
-        questionService.add("question5", "answer5");
+        Mockito.when(questionService.getRandomQuestion()).thenReturn(new Question("question1", "answer1"))
+                .thenReturn(new Question("question2", "answer2"))
+                .thenReturn(new Question("question3", "answer3"));
         Collection<Question> questionSet =  questionService.getAll();
         Collection<Question> setExpectedRandom =  examinerService.getQuestions(2);
         for (Question q : setExpectedRandom) {

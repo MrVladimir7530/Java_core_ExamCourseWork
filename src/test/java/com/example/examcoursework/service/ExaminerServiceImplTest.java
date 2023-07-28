@@ -20,11 +20,8 @@ public class ExaminerServiceImplTest {
         Mockito.when(questionService.getRandomQuestion()).thenReturn(new Question("question1", "answer1"))
                 .thenReturn(new Question("question2", "answer2"))
                 .thenReturn(new Question("question3", "answer3"));
-        Collection<Question> questionSet =  questionService.getAll();
-        Collection<Question> setExpectedRandom =  examinerService.getQuestions(2);
-        for (Question q : setExpectedRandom) {
-            boolean s = questionSet.contains(q);
-            assertTrue(s);
-        }
+        Collection<Question> setExpectedRandom =  examinerService.getQuestions(3);
+        Question questionResult = new Question("question2", "answer2");
+        assertTrue(setExpectedRandom.contains(questionResult));
     }
 }
